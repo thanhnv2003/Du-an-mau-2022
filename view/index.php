@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../model/pdo.php';
 include '../model/sanpham.php';
 include '../model/danhmuc.php';
@@ -31,6 +32,21 @@ if (isset($_GET['act']) && ($_GET['act']) != ''){
                 $pass = $_POST['password'];
                 insert_account($user, $pass, $email);
                 $thongbao = 'Đã đăng ký thành công';
+            }
+            include './taikhoan/dangky.php';
+            break;
+        case 'dang-nhap':
+            if (isset($_POST['dangnhap'])){
+                $user = $_POST['username'];
+                $pass = $_POST['password'];
+                $check_user = check_user($user,$pass);
+                if (is_array($check_user)){
+                    $_SESSION['user'] = $check_user;
+//                    $thongbao = 'Đã đăng nhập thành công';
+                    header('location: index.php');
+                }else{
+                    $thongbao = 'Tài khoản không tồn tại';
+                }
             }
             include './taikhoan/dangky.php';
             break;

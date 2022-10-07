@@ -27,16 +27,28 @@
         <div class="box-account">
             <div class="box-title"><p>TÀI KHOẢN</p></div>
             <div class="box-content formtk">
-                <form action="" method="POST">
+                <?php if (isset($_SESSION['user'])){
+                    foreach ($_SESSION['user'] as $key => $value){?>
+                    <span>Xin chào <?php echo $value['username']?></span><br>
+                    <li><a href="index.php?act=quen-mat-khau">Quên mật khẩu</a></li>
+                    <li><a href="index.php?act=edit-taikhoan">Cập nhật tài khoản</a></li>
+                    <li><a href="../admin/index.php">Đăng nhập Admin</a></li>
+                    <li><a href="index.php?act=logout">Thoát</a></li>
+                <?php
+                    }
+                }else{
+                ?>
+                <form action="index.php?act=dang-nhap" method="POST">
                     <span>Tên đăng nhập</span><br>
-                    <input type="text" name="user"><br>
+                    <input type="text" name="username"><br>
                     <span>Mật khẩu</span><br>
                     <input type="text" name="password" id=""><br>
                     <input type="checkbox" name="" id=""><span>Ghi nhớ tài khoản?</span><br>
-                    <input type="submit" value="Đăng nhập"><br>
+                    <input type="submit" value="Đăng nhập" name="dangnhap"><br>
                 </form>
                 <li><a href="">Quên mật khẩu</a></li>
                 <li><a href="index.php?act=dang-ky">Đăng ký thành viên</a></li>
+                <?php } ?>
             </div>
         </div>
         <div class="box-cate">
