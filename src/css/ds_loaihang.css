@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    margin: 0 auto;
+    width: 1440px;
+}
+header{
+    background-color: aquamarine;
+    border: 1px solid #090;
+    font-size: 1vw;
+    color: blue;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+header h1{
+    margin: 20px;
+}
+nav{
+    background-color: black;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+}
+nav li{
+    display: inline-block;
+    padding: 10px 20px;
+}
+nav a{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    transition: 0.5s;
+}
+nav a:hover{
+    color: white;
+    font-size: 20px;
+}
+.header{
+    background-color: #EEE;
+    border: 1px solid #CCC;
+    color: #666;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1vw;
+}
+.import-dm{
+    padding: 20px 0;
+}
+.import-dm input[type="button"]{
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+.import-dm input[type="button"]:hover{
+    background-color: #ccc;
+}
+.ds-lh table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.ds-lh table th{
+    padding: 20px;
+    background-color: #ccc;
+}
+/*.ds-lh table th:nth-child(2){*/
+/*    width: 30%;*/
+/*    padding: 20px;*/
+/*    background-color: #ccc;*/
+/*}*/
+/*.ds-lh table th:nth-child(3){*/
+/*    width: 40%;*/
+/*    padding: 20px;*/
+/*    background-color: #ccc;*/
+/*}*/
+/*.ds-lh table th:nth-child(4){*/
+/*    width: 20%;*/
+/*    padding: 20px;*/
+/*    background-color: #ccc;*/
+/*}*/
+.ds-lh table td{
+    padding: 10px 20px;
+    border: 1px solid #999;
+}

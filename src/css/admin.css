@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    margin: 0 auto;
+    width: 1440px;
+}
+header{
+    background-color: aquamarine;
+    border: 1px solid #090;
+    font-size: 1vw;
+    color: blue;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+header h1{
+    margin: 20px;
+}
+nav{
+    background-color: black;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+}
+nav li{
+    display: inline-block;
+    padding: 10px 20px;
+}
+nav a{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    transition: 0.5s;
+}
+nav a:hover{
+    color: white;
+    font-size: 20px;
+}
+.header{
+    background-color: #EEE;
+    border: 1px solid #CCC;
+    color: #666;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1vw;
+}
+.import-dm{
+    padding: 20px 0;
+}
+.import-dm h5{
+    font-size: 17px;
+    
+}
+.import-dm input[type="text"]{
+    width: 100%;
+    border: 1px solid #CCC;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.import-dm input[type="submit"],input[type="reset"],input[type="button"]{
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+.import-dm input[type="submit"]:hover,input[type="reset"]:hover,input[type="button"]:hover{
+    background-color: #ccc;
+}
