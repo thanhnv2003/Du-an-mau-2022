@@ -32,7 +32,9 @@
                     <span>Xin chào <?php echo $value['username']?></span><br>
                     <li><a href="index.php?act=quen-mat-khau">Quên mật khẩu</a></li>
                     <li><a href="index.php?act=edit-taikhoan">Cập nhật tài khoản</a></li>
+                    <?php if ($value['role'] == 2){ ?>
                     <li><a href="../admin/index.php">Đăng nhập Admin</a></li>
+                    <?php } ?>
                     <li><a href="index.php?act=logout">Thoát</a></li>
                 <?php
                     }

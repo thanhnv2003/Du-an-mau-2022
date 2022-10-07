@@ -50,8 +50,39 @@ if (isset($_GET['act']) && ($_GET['act']) != ''){
             }
             include './taikhoan/dangky.php';
             break;
+        case 'edit-taikhoan':
+            if (isset($_POST['capnhat']) && ($_POST['capnhat'])){
+                $id = $_POST['id_user'];
+                $user = $_POST['username'];
+                $pass = $_POST['password'];
+                $email = $_POST['email'];
+                $address = $_POST['address'];
+                $tel = $_POST['tel'];
+                update_user($id, $user, $pass, $email, $address, $tel);
+                $_SESSION['user'] = check_user($user, $pass);
+                header('location: index.php?act=edit-taikhoan');
+            }
+            include './taikhoan/edit_taikhoan.php';
+            break;
+        case 'quen-mat-khau':
+            if (isset($_POST['send']) && ($_POST['send'])){
+                $email = $_POST['email'];
 
+                $check_email = check_email($email);
+                if (is_array($check_email)){
+                    $thongbao = 'Mật khẩu của bạn là: '.$check_email[0]['password'];
+                }else{
+                    $thongbao = 'Email này không tồn tại!';
+                }
+
+            }
+            include './taikhoan/quenmatkhau.php';
+            break;
             //
+        case 'logout':
+            session_unset();
+            header('location: index.php');
+            break;
         case 'sanphamct':
             if (isset($_GET['id_sp']) && ($_GET['id_sp']>0)){
                 $id = $_GET['id_sp'];
@@ -91,7 +122,5 @@ if (isset($_GET['act']) && ($_GET['act']) != ''){
 }else{
     include 'home.php';
 }
-
-
 include 'footer.php';
 ?>

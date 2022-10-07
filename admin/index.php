@@ -2,6 +2,7 @@
 require "../model/danhmuc.php";
 require "../model/sanpham.php";
 include "../model/pdo.php";
+include "../model/taikhoan.php";
     include 'header.php';
     //controller
 
@@ -120,6 +121,37 @@ include "../model/pdo.php";
                 $iddm = 0;
                 $listSanPham = loadall_sp($kyw, $iddm);
                 include "sanpham/list.php";
+                break;
+            case 'list_user':
+                $loadallUser = loadall_user();
+                include "taikhoan/list_user.php";
+                break;
+            case 'edit_user':
+                if(isset($_GET['id']) && ($_GET['id']>0)){
+                    $user = loadone_user($_GET['id']);
+                }
+                include "taikhoan/edit.php";
+                break;
+            case 'update_user':
+                if (isset($_POST['update'])&&($_POST['update'])){
+                    $user = $_POST['username'];
+                    $pass = $_POST['password'];
+                    $email = $_POST['email'];
+                    $address = $_POST['address'];
+                    $tel = $_POST['tel'];
+                    $id = $_POST['id_user'];
+                    update_user($id, $user, $pass, $email, $address, $tel);
+                    $thongbao =  'Cập nhật thành công';
+                }
+                $loadallUser = loadall_user();
+                include "taikhoan/list_user.php";
+                break;
+            case 'delete_user':
+                if(isset($_GET['id']) && ($_GET['id']>0)){
+                    delete_user($_GET['id']);
+                }
+                $loadallUser = loadall_user();
+                include "taikhoan/list_user.php";
                 break;
             default:
                 include 'home.php';
