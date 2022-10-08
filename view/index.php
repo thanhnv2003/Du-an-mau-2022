@@ -44,8 +44,9 @@ if (isset($_GET['act']) && ($_GET['act']) != ''){
                     $_SESSION['user'] = $check_user;
 //                    $thongbao = 'Đã đăng nhập thành công';
                     header('location: index.php');
-                }else{
+                }elseif(!in_array($check_user)){
                     $thongbao = 'Tài khoản không tồn tại';
+
                 }
             }
             include './taikhoan/dangky.php';

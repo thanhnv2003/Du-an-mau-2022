@@ -3,6 +3,7 @@ require "../model/danhmuc.php";
 require "../model/sanpham.php";
 include "../model/pdo.php";
 include "../model/taikhoan.php";
+include '../model/binhluan.php';
     include 'header.php';
     //controller
 
@@ -152,6 +153,18 @@ include "../model/taikhoan.php";
                 }
                 $loadallUser = loadall_user();
                 include "taikhoan/list_user.php";
+                break;
+            case 'ds_binh_luan':
+                $User = loadall_user();
+                $listBinhLuan = loadall_binhluan(0);
+                include "binhluan/list.php";
+                break;
+            case 'delete_binh_luan':
+                if(isset($_GET['id']) && ($_GET['id']>0)){
+                    delete_binhluan($_GET['id']);
+                }
+                $listBinhLuan = loadall_binhluan(0);
+                include "binhluan/list.php";
                 break;
             default:
                 include 'home.php';

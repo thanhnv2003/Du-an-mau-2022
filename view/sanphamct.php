@@ -15,13 +15,19 @@
                 </ul>
             </div>
         </div><br>
-        <?php } ?>
-        <div class="box-row">
-            <div class="box-title">BÌNH LUẬN</div>
-            <div class="box-content">
-
-            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $("#binhluan").load("../view/binhluan/binhluanform.php", {idpro: <?php echo $value['id']?>});
+                });
+            </script>
+        <div class="box-row" id="binhluan">
+<!--            <div class="box-title">BÌNH LUẬN</div>-->
+<!--            <div class="box-content">-->
+<!--                <iframe src="../view/binhluan/binhluanform.php?id_bl=--><?php //echo $value['id'] ?><!--" frameborder="0" width="100%" height="300px"></iframe>-->
+<!--            </div>-->
         </div><br>
+        <?php } ?>
         <div class="box-row">
             <div class="box-title">SẢN PHẨM CÙNG LOẠI</div>
             <div class="box-content">
