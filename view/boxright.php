@@ -3,16 +3,15 @@
         <div class="box-title"><p>TÀI KHOẢN</p></div>
         <div class="box-content formtk">
             <?php if (isset($_SESSION['user'])){
-                foreach ($_SESSION['user'] as $key => $value){?>
-                    <span>Xin chào <?php echo $value['username']?></span><br>
+                ?>
+                    <span>Xin chào <?php echo $_SESSION['user']['username']?></span><br>
                     <li><a href="index.php?act=quen-mat-khau">Quên mật khẩu</a></li>
                     <li><a href="index.php?act=edit-taikhoan">Cập nhật tài khoản</a></li>
-                    <?php if ($value['role'] == 2){ ?>
+                    <?php if ($_SESSION['user']['role'] == 1){ ?>
                         <li><a href="../admin/index.php">Đăng nhập Admin</a></li>
                     <?php } ?>
                     <li><a href="index.php?act=logout">Thoát</a></li>
                     <?php
-                }
             }else{
                 ?>
                 <form action="index.php?act=dang-nhap" method="POST">

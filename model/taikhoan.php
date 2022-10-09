@@ -1,11 +1,18 @@
 <?php
 function insert_account($username, $password, $email){
-    $sql = "INSERT INTO `account` (`id`, `username`, `password`, `email`, `address`, `tel`, `role`) VALUES (NULL, '$username', '$password', '$email', '', NULL, '1')";
+    $sql = "INSERT INTO `account` (`id`, `username`, `password`, `email`, `address`, `tel`, `role`) VALUES (NULL, '$username', '$password', '$email', '', NULL, '0')";
     pdo_execute($sql);
 }
 function check_user($user,$pass){
     $sql = "select * from account where username = '$user' and password = '$pass'";
-    $sp = pdo_query($sql);
+    $sp = pdo_query_one($sql);
+//    foreach ($sp as $key => $value){
+//        if ($user == $value['username'] && $pass == $value['password']){
+//            $mang = $value;
+//        }else{
+//            $mang = '';
+//        }
+//    }
     return $sp;
 }
 function check_email($email){

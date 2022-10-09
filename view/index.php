@@ -44,7 +44,7 @@ if (isset($_GET['act']) && ($_GET['act']) != ''){
                     $_SESSION['user'] = $check_user;
 //                    $thongbao = 'Đã đăng nhập thành công';
                     header('location: index.php');
-                }elseif(!in_array($check_user)){
+                }elseif(!is_array($check_user)){
                     $thongbao = 'Tài khoản không tồn tại';
 
                 }
@@ -61,7 +61,9 @@ if (isset($_GET['act']) && ($_GET['act']) != ''){
                 $tel = $_POST['tel'];
                 update_user($id, $user, $pass, $email, $address, $tel);
                 $_SESSION['user'] = check_user($user, $pass);
+                $thongbao = 'Cập nhật thành công';
                 header('location: index.php?act=edit-taikhoan');
+
             }
             include './taikhoan/edit_taikhoan.php';
             break;
