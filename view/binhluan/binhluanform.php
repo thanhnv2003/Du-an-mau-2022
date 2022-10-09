@@ -66,7 +66,6 @@ $dsbl = loadall_binhluan($idpro);
         $noidung = $_POST['message'];
         $idpro = $_POST['idpro'];
         $iduser = $_SESSION['user'][0]['id'];
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
         $ngaybl = date('h:i:sa d/m/Y');
 
 //        var_dump($_SESSION['user'][0]['id']);

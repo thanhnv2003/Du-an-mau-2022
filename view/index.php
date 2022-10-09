@@ -4,7 +4,13 @@ include '../model/pdo.php';
 include '../model/sanpham.php';
 include '../model/danhmuc.php';
 include '../model/taikhoan.php';
+include '../model/cart.php';
+
+
 include 'header.php';
+
+
+if (!isset($_SESSION['mycard'])) $_SESSION['mycard'] = [];
 
 $sp_new = loadall_sp_home();
 $dm_new = loadall_dm();
@@ -116,6 +122,63 @@ if (isset($_GET['act']) && ($_GET['act']) != ''){
             $ds_sanpham = loadall_sp($kyw, $iddm);
             $ten_dm = load_ten_dm($iddm);
             include './sanpham.php';
+            break;
+        case 'add_tocard':
+            //add thông tin sp từ form add to card đến session
+            if (isset($_POST['addtocard']) && ($_POST['addtocard'])){
+                $id = $_POST['id'];
+                $name = $_POST['name'];
+                $image = $_POST['image'];
+                $price = $_POST['price'];
+                $soluong = 1;
+                $thanhtien = $soluong * $price;
+                $sp_add = [$id, $name, $image, $price, $soluong, $thanhtien];
+                array_push($_SESSION['mycard'], $sp_add);
+            }
+            include './cart/viewcart.php';
+            break;
+        case 'delete_cart':
+            echo $_GET['id_cart'];
+            if (isset($_GET['id_cart'])){
+                array_splice($_SESSION['mycard'],$_GET['id_cart'],1);
+//                unset($_SESSION['mycard'][$_GET['id_cart']]);
+            }else{
+                $_SESSION['mycard'] = [];
+            }
+            header('location: index.php?act=view_cart');
+            break;
+        case 'view_cart':
+            include './cart/viewcart.php';
+            break;
+        case 'bill':
+
+            include './cart/bill.php';
+            break;
+        case 'bill_confirm':
+            if (isset($_POST['dongy']) && ($_POST['dongy'])){
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $address = $_POST['address'];
+                $tel = $_POST['tel'];
+                $pttt = $_POST['pttt'];
+                date_default_timezone_set('Asia/Ho_Chi_Minh');
+                $ngaydathang = date('h:i:sa d/m/Y');
+                $tongdonhang = tongdonhang();
+
+                $id_bill = insert_bill($name, $email, $address, $tel,$pttt, $ngaydathang, $tongdonhang);
+
+                //insert into cart : $_SESSION['mycard] & id_bill;
+                foreach ($_SESSION['mycard'] as $cart){
+                    insert_cart($_SESSION['user']['id'],$cart[0],$cart[2],$cart[1],$cart[3],$cart[4],$cart[5],$id_bill);
+                }
+
+            }
+            $listbill=loadone_bill($id_bill);
+            include './cart/billconfirm.php';
+            break;
+        case 'my_bill':
+
+            include './cart/mybill.php';
             break;
         default:
             include './home.php';
