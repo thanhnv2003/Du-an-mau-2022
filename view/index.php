@@ -156,6 +156,12 @@ if (isset($_GET['act']) && ($_GET['act']) != ''){
             break;
         case 'bill_confirm':
             if (isset($_POST['dongy']) && ($_POST['dongy'])){
+                if (isset($_SESSION['user'])){
+                    $idUser = $_SESSION['user']['id'];
+                }else{
+                    $idUser=0;
+                }
+
                 $name = $_POST['name'];
                 $email = $_POST['email'];
                 $address = $_POST['address'];
@@ -164,20 +170,25 @@ if (isset($_GET['act']) && ($_GET['act']) != ''){
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
                 $ngaydathang = date('h:i:sa d/m/Y');
                 $tongdonhang = tongdonhang();
-
-                $id_bill = insert_bill($name, $email, $address, $tel,$pttt, $ngaydathang, $tongdonhang);
+                //tạo bill
+                $id_bill = insert_bill($idUser,$name, $email, $address, $tel,$pttt, $ngaydathang, $tongdonhang);
 
                 //insert into cart : $_SESSION['mycard] & id_bill;
                 foreach ($_SESSION['mycard'] as $cart){
                     insert_cart($_SESSION['user']['id'],$cart[0],$cart[2],$cart[1],$cart[3],$cart[4],$cart[5],$id_bill);
                 }
 
+                //xóa session
+                $_SESSION['mycard'] = [];
+
             }
-            $listbill=loadone_bill($id_bill);
+            $bill=loadone_bill($id_bill);
+            $bill_ct = loadone_cart($id_bill);
             include './cart/billconfirm.php';
             break;
         case 'my_bill':
 
+            $listBill = loadall_bill($_SESSION['user']['id']);
             include './cart/mybill.php';
             break;
         default:

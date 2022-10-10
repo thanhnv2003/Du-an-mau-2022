@@ -4,6 +4,7 @@ require "../model/sanpham.php";
 include "../model/pdo.php";
 include "../model/taikhoan.php";
 include '../model/binhluan.php';
+include '../model/cart.php';
     include 'header.php';
     //controller
 
@@ -165,6 +166,49 @@ include '../model/binhluan.php';
                 }
                 $listBinhLuan = loadall_binhluan(0);
                 include "binhluan/list.php";
+                break;
+            case 'ds_donhang':
+                if (isset($_POST['kyw']) && ($_POST['kyw']!='')){
+                    $kyw = $_POST['kyw'];
+                }else{
+                    $kyw = '';
+                }
+                $listBill = loadall_bill($kyw,0);
+                include 'donhang/ds_donhang.php';
+                break;
+            case 'edit_don_hang':
+                if(isset($_GET['id']) && ($_GET['id']>0)){
+                    $donhang = loadone_bill($_GET['id']);
+                }
+                include "donhang/edit.php";
+                break;
+            case 'delete_don_hang':
+                if(isset($_GET['id']) && ($_GET['id']>0)){
+                    delete_donhang($_GET['id']);
+                }
+                //kyw
+                if (isset($_POST['kyw']) && ($_POST['kyw']!='')){
+                    $kyw = $_POST['kyw'];
+                }else{
+                    $kyw = '';
+                }
+                $listBill = loadall_bill($kyw,0);
+                include 'donhang/ds_donhang.php';
+                break;
+            case 'update_don_hang':
+                if (isset($_POST['update'])&&($_POST['update'])){
+                    $id_ttdh = $_POST['id_ttdh'];
+                    $id = $_POST['id'];
+                    update_donhang($id_ttdh, $id);
+                    $thongbao =  'Cập nhật thành công';
+                }
+                if (isset($_POST['kyw']) && ($_POST['kyw']!='')){
+                    $kyw = $_POST['kyw'];
+                }else{
+                    $kyw = '';
+                }
+                $listBill = loadall_bill($kyw,0);
+                include 'donhang/ds_donhang.php';
                 break;
             default:
                 include 'home.php';

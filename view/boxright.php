@@ -5,6 +5,7 @@
             <?php if (isset($_SESSION['user'])){
                 ?>
                     <span>Xin chào <?php echo $_SESSION['user']['username']?></span><br>
+                    <li><a href="index.php?act=my_bill">Đơn hàng của tôi</a></li>
                     <li><a href="index.php?act=quen-mat-khau">Quên mật khẩu</a></li>
                     <li><a href="index.php?act=edit-taikhoan">Cập nhật tài khoản</a></li>
                     <?php if ($_SESSION['user']['role'] == 1){ ?>

@@ -1,1 +1,1 @@
-<h1>Đây là trang Home</h1>
+<a href="../view/index.php"><h1>Trở về trang bán hàng</h1></a>

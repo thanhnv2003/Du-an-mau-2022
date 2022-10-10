@@ -1,10 +1,9 @@
 <main>
-<!--    --><?php //var_dump($listBill); ?>
     <div class="header">
         <h3>DANH SÁCH ĐƠN HÀNG</h3>
     </div>
     <div class="import-dm">
-        <form action="index.php?act=ds_donhang" method="post">
+        <form action="../index.php?act=ds_donhang" method="post">
             <input type="text" name="kyw">
             <input type="submit" name="search" value="SEARCH">
         </form>
@@ -34,8 +33,8 @@
                             <td><?php echo $ttdh ?></td>
                             <td><?php echo $value['ngaydathang']?></td>
                             <td>
-                                <input type="button" value="Sửa" onclick="location.href='index.php?act=edit_sp&id=<?php echo $value['id']?>'">
-                                <input type="button" value="Xóa" onclick="confirm('Bạn có muốn xóa sản phẩm \( <?php echo $value['name']?> \) hay không!') == true ? location.href='index.php?act=delete_sp&id=<?php echo $value['id']?>' : '' ">
+                                <input type="button" value="Sửa" onclick="location.href='index.php?act=edit_don_hang&id=<?php echo $value['id']?>'">
+                                <input type="button" value="Xóa" onclick="confirm('Bạn có muốn xóa đơn hàng \( DAM-<?php echo $value['id']?> \) hay không!') == true ? location.href='index.php?act=delete_don_hang&id=<?php echo $value['id']?>' : '' ">
                             </td>
                         </tr>
                     <?php }?>
@@ -44,7 +43,6 @@
             <input type="button" value="Chọn tất cả">
             <input type="button" value="Bỏ chọn tất cả">
             <input type="button" value="Xóa các mục đã chọn">
-            <a href="index.php?act=add_sp"><input type="button" value="Thêm mới"></a>
         </form>
     </div>
 </main>
