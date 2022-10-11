@@ -173,5 +173,10 @@ function delete_donhang($id){
     $pdo = "delete from cart where id_bill=".$id;
     pdo_execute($pdo);
 }
+function loadall_thongke(){
+    $sql = "select danhmuc.id as madm, danhmuc.name as tendm, count(sanpham.id) as countsp, min(sanpham.price) as minprice, max(sanpham.price) as maxprice, avg(sanpham.price) as trungbinh from sanpham left join danhmuc on danhmuc.id=sanpham.id_danhmuc group by danhmuc.id order by danhmuc.id desc";
+    $dstk = pdo_query($sql);
+    return $dstk;
+}
 
 ?>

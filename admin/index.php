@@ -210,6 +210,14 @@ include '../model/cart.php';
                 $listBill = loadall_bill($kyw,0);
                 include 'donhang/ds_donhang.php';
                 break;
+            case 'thong_ke':
+                $listtk = loadall_thongke();
+                include 'thongke/list.php';
+                break;
+            case 'bieudo':
+                $listtk = loadall_thongke();
+                include './thongke/bieudo.php';
+                break;
             default:
                 include 'home.php';
                 break;
