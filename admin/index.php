@@ -176,6 +176,7 @@ include '../model/cart.php';
                 $listBill = loadall_bill($kyw,0);
                 include 'donhang/ds_donhang.php';
                 break;
+
             case 'edit_don_hang':
                 if(isset($_GET['id']) && ($_GET['id']>0)){
                     $donhang = loadone_bill($_GET['id']);
